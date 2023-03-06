@@ -4,17 +4,14 @@ namespace L01_2019MA603.Models
 {
     public class clientes
     {
-        internal int id_clienteld;
-        internal int id_clientes;
-        internal object descripcion;
+       // internal object clientes;
 
         [Key]
-        public int id { get; set; }
-        public string nombreCliente { get; set; }
-        public string direccion { get; set; }
-      
-       
+        public int id_clienteld { get; set; }
 
+        public string nombreCliente { get; set; }
+
+        public string direccion { get; set; }
 
     }
 }

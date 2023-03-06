@@ -39,7 +39,7 @@ namespace L01_2019MA603.Controllers
         public IActionResult Get(int id)
         {
             clientes? cliente = (from e in _clientesContexto.clientes
-                               where e.id_clientes == id
+                               where e.id_clienteld == id
                                select e).FirstOrDefault();
 
 
@@ -51,13 +51,13 @@ namespace L01_2019MA603.Controllers
             return Ok(cliente);
         }
 
-        //TERCERA PARTE
+        //CREAR
         [HttpGet]
         [Route("Find/{filtro}")]
         public IActionResult FindByDescription(string filtro)
         {
             clientes? cliente = (from e in _clientesContexto.clientes
-                                //where e.descripcion.Contains(filtro)
+                                where e.nombreCliente.Contains(filtro)
                                  select e).FirstOrDefault();
 
             if (cliente == null)
@@ -71,13 +71,13 @@ namespace L01_2019MA603.Controllers
         //AGREGAR
         [HttpPost]
         [Route("Add")]
-        public IActionResult Guardarclientes([FromBody] clientes equipo)
+        public IActionResult Guardarclientes([FromBody] clientes cliente)
         {
             try
             {
-                _clientesContexto.clientes.Add(equipo);
+                _clientesContexto.clientes.Add(cliente);
                 _clientesContexto.SaveChanges();
-                return Ok(equipo);
+                return Ok(cliente);
             }
             catch (Exception e)
             {
@@ -89,21 +89,21 @@ namespace L01_2019MA603.Controllers
 
         [HttpPut]
         [Route("actualizar/{id}")]
-        public IActionResult ActualizarEquipo(int id, [FromBody] clientes equipoModificar)
+        public IActionResult ActualizarEquipo(int id, [FromBody] clientes clienteModificar)
         {
             try
             {
                 clientes? clienteActual = (from e in _clientesContexto.clientes
-                                         where e.id_clientes == id
+                                           where e.id_clienteld == id
                                          select e).FirstOrDefault();
                 if (clienteActual == null)
                 {
                     return NotFound();
                 }
-                clienteActual.nombreCliente = equipoModificar.nombreCliente;
-                clienteActual.direccion = equipoModificar.direccion;
+                clienteActual.nombreCliente = clienteModificar.nombreCliente;
+                clienteActual.direccion = clienteModificar.direccion;
                 
-                return Ok(equipoModificar);
+                return Ok(clienteModificar);
             }
             catch (Exception e)
             {
@@ -119,7 +119,7 @@ namespace L01_2019MA603.Controllers
             try
             {
                 clientes? cliente = (from e in _clientesContexto.clientes
-                                   where e.id_clientes == id
+                                   where e.id_clienteld == id
                                    select e).FirstOrDefault();
                 if (cliente == null)
                 {

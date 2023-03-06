@@ -11,5 +11,7 @@ namespace L01_2019MA603.Models
 
         }
 
+        public DbSet<motoristas> motoristas { get; set; }
+
     }
 }

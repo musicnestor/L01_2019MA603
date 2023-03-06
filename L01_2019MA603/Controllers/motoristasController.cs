@@ -40,8 +40,8 @@ namespace L01_2019MA603.Controllers
         public IActionResult Get(int id)
         {
             motoristas? motorista = (from e in _motoristasContexto.motoristas
-                                 where e.id_motoristald == id
-                                 select e).FirstOrDefault();
+                                     where e.id_motoristald == id
+                                     select e).FirstOrDefault();
 
 
             if (motorista == null)
@@ -57,8 +57,8 @@ namespace L01_2019MA603.Controllers
         public IActionResult FindByDescription(string filtro)
         {
             motoristas? motorista = (from e in _motoristasContexto.motoristas
-                                 where e.nombreMotoristald.Contains(filtro)
-                                 select e).FirstOrDefault();
+                                     where e.nombreMotoristald.Contains(filtro)
+                                     select e).FirstOrDefault();
 
             if (motorista == null)
             {
@@ -77,14 +77,14 @@ namespace L01_2019MA603.Controllers
             try
             {
                 motoristas? motoristaActual = (from e in _motoristasContexto.motoristas
-                                           where e.id_motoristald == id
-                                           select e).FirstOrDefault();
+                                               where e.id_motoristald == id
+                                               select e).FirstOrDefault();
                 if (motoristaActual == null)
                 {
                     return NotFound();
                 }
-                motoristaActual.nombreMotoristald = motoristasModificar.nombreMotoristald   ;
-               // motoristaActual.direccion = equipoModificar.direccion;
+                motoristaActual.nombreMotoristald = motoristasModificar.nombreMotoristald;
+                // motoristaActual.direccion = equipoModificar.direccion;
 
                 return Ok(motoristasModificar);
             }
@@ -102,8 +102,8 @@ namespace L01_2019MA603.Controllers
             try
             {
                 motoristas? motorista = (from e in _motoristasContexto.motoristas
-                                     where e.id_motoristald == id
-                                     select e).FirstOrDefault();
+                                         where e.id_motoristald == id
+                                         select e).FirstOrDefault();
                 if (motorista == null)
                 {
                     return NotFound();
@@ -121,5 +121,6 @@ namespace L01_2019MA603.Controllers
 
 
         }
+    }
 }
 
